@@ -1,0 +1,22 @@
+# Caleb Dresser
+# BIDMC / HSPH / FXB
+
+# Lets read in the data file
+heat <- read.csv (file = file.choose())
+
+# peek at the data
+head(heat)
+
+# lets plot warming since 1960 (independent variable) against hypothesized
+# dependent variable of emigration ratio (ie. number of people born in the nation in question
+# divided by the total population of the origin nation)
+
+p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$Emigrationratio))
+p2 <- p1 + geom_point()
+p2
+
+# now lets look at raw numbers (rather than proportion of origin) in relation to warming
+
+p3 <- ggplot(data=heat, aes(x=Warming2013, y=Emig2015))
+p4 <- p3 + geom_point()
+p4
