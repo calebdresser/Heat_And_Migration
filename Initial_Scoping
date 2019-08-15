@@ -23,9 +23,25 @@ p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
 p2 <- p1 + geom_point(aes(color = factor(heat$Continent)))
 p2
 
+p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
+p2 <- p1 + geom_point(aes(color = factor(heat$Continent))) + geom_smooth(mapping = aes( linetype = Continent))
+p2
+
+p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
+p2 <- p1 + geom_point(aes(color = factor(heat$IslandTerritories))) + geom_smooth(mapping = aes( linetype = IslandTerritories))
+p2
+
 
 # now lets look at raw numbers (rather than proportion of origin) in relation to warming
 
 p3 <- ggplot(data=heat, aes(x=Warming2013, y=Emig2015))
 p4 <- p3 + geom_point()
 p4
+
+
+p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$Emig2015))
+p2 <- p1 + geom_point(aes(color = factor(heat$IslandTerritories))) + geom_smooth(mapping = aes( linetype = IslandTerritories))
+p2
+
+
+
