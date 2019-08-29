@@ -77,7 +77,11 @@ AsiaHeat <- heat [ which (heat$Continent == "Asia"),]
 
 CaribbeanHeat <- heat [ which (heat$Continent == "Caribbean"),]
 
+CAheat <- heat [ which (heat$Continent == "CentralAmerica"),]
+
 EuropeHeat <- heat [ which (heat$Continent == "Europe"),]
+
+MEheat <- heat [ which (heat$Continent == "MiddleEast"),]
 
 NorthAmericaHeat <- heat [ which (heat$Continent == "NorthAmerica"),]
 
@@ -103,8 +107,14 @@ asiaemig
 caribemig <- ggplot(CaribbeanHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Caribbean")
 caribemig
 
+CAemig <- ggplot(CAheat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Central America")
+CAemig
+
 eurobemig <- ggplot(EuropeHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Europe")
 eurobemig
+
+MEemig <- ggplot(MEheat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Middle East")
+MEemig
 
 NAemig <- ggplot(NorthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("North America")
 NAemig
@@ -144,11 +154,23 @@ ylab("Ratio of Emigrants to National Population") +
 ggtitle("Caribbean Nations")
 caribemigsmooth
 
+CEemigsmooth <- ggplot(CAheat, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_smooth() + xlab("Warming Since 1960 (C)") + 
+ylab("Ratio of Emigrants to National Population") + 
+ggtitle("Central American Nations")
+CEemigsmooth
+
 euroemigsmooth <- ggplot(EuropeHeat, aes(x=Warming2013, y=EmigrationRatio)) + 
 geom_smooth() + xlab("Warming Since 1960 (C)") + 
 ylab("Ratio of Emigrants to National Population") + 
 ggtitle("European Nations")
 euroemigsmooth
+
+MEemigsmooth <- ggplot(MEheat, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_smooth() + xlab("Warming Since 1960 (C)") + 
+ylab("Ratio of Emigrants to National Population") + 
+ggtitle("Middle Eastern Nations")
+MEemigsmooth
 
 NAemigsmooth <- ggplot(NorthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + 
 geom_smooth() + xlab("Warming Since 1960 (C)") + 
@@ -168,17 +190,28 @@ ylab("Ratio of Emigrants to National Population") +
 ggtitle("South American Nations", )
 SAemigsmooth
 
-
 islandemigsmooth <- ggplot(IslandsHeat, aes(x=Warming2013, y=EmigrationRatio)) + 
 geom_smooth() + xlab("Warming Since 1960 (C)") + 
 ylab("Ratio of Emigrants to National Population") + 
 ggtitle("Island Nations", )
 islandemigsmooth
 
-
 contemigsmooth <- ggplot(ContinentalHeat, aes(x=Warming2013, y=EmigrationRatio)) + 
 geom_smooth() + xlab("Warming Since 1960 (C)") + 
 ylab("Ratio of Emigrants to National Population") + 
 ggtitle("Continental Nations", )
 contemigsmooth
+
+##
+##
+##
+# And now, lets mace some fact panes separating these out
+
+smoothcore <- ggplot(data=heat, aes(x=Warming2013, y=EmigrationRatio)) + geom_smooth()
+
+smoothcont <- smoothcore + facet_grid (. ~ heat$Continent)
+smoothcont
+
+smoothcontislands <- smoothcore + facet_grid (heat$IslandTerritories ~ heat$Continent)
+smoothcontislands
 
