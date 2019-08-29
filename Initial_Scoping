@@ -38,10 +38,61 @@ p3 <- ggplot(data=heat, aes(x=Warming2013, y=Emig2015))
 p4 <- p3 + geom_point()
 p4
 
-
 p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$Emig2015))
 p2 <- p1 + geom_point(aes(color = factor(heat$IslandTerritories))) + geom_smooth(mapping = aes( linetype = IslandTerritories))
 p2
 
 
+###
+###
+###
+# Lets just examine the warming data
+
+warming <- ggplot(heat, aes(Warming2013))
+warmingdistribution <- warming + geom_histogram()
+
+warmingdist <- warming + geom_density()
+warmingdist
+
+# now lets look at the distribution of emigraiton ratios
+emig <- ggplot(heat, aes(log(EmigrationRatio)))
+emigdist <- emig + geom_density()
+emigdist
+
+
+# Now lets look at subsets one at a time
+
+#create a new frame for each continent
+
+AfricaHeat <- heat [ which (heat$Continent == "Africa"),]
+AfricaHeat
+
+AsiaHeat <- heat [ which (heat$Continent == "Asia"),]
+AsiaHeat
+
+SouthAmericaHeat <- heat [ which (heat$Continent == "SouthAmerica"),]
+SouthAmericaHeat
+
+# Now lets examine heat vs emigration ratio by continent
+
+africaemig <- ggplot(AfricaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point()
+africaemig
+
+asiaemig <- ggplot(AsiaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point()
+asiaemig
+
+asiaemigsmooth <- ggplot(AsiaHeat, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_smooth() + xlab("Warming Since 1960 (C)") + 
+ylab("Ratio of Emigrants to National Population") + 
+ggtitle("Asian Nations", )
+asiaemigsmooth
+
+SAemig <- ggplot(SouthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point()
+SAemig
+
+SAemigsmooth <- ggplot(SouthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_smooth() + xlab("Warming Since 1960 (C)") + 
+ylab("Ratio of Emigrants to National Population") + 
+ggtitle("South American Nations", )
+SAemigsmooth
 
