@@ -7,39 +7,15 @@ heat <- read.csv (file = file.choose())
 # peek at the data
 head(heat)
 
+#load the tidyverse
+library(tidyverse)
+
 # lets plot warming since 1960 (independent variable) against hypothesized
 # dependent variable of emigration ratio (ie. number of people born in the nation in question
 # divided by the total population of the origin nation)
 
 p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
 p2 <- p1 + geom_point(aes(color = factor(heat$Continent), shape = factor(heat$IslandTerritories)))
-p2
-
-p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
-p2 <- p1 + geom_point(aes(color = factor(heat$IslandTerritories)))
-p2
-
-p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
-p2 <- p1 + geom_point(aes(color = factor(heat$Continent)))
-p2
-
-p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
-p2 <- p1 + geom_point(aes(color = factor(heat$Continent))) + geom_smooth(mapping = aes( linetype = Continent))
-p2
-
-p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$EmigrationRatio))
-p2 <- p1 + geom_point(aes(color = factor(heat$IslandTerritories))) + geom_smooth(mapping = aes( linetype = IslandTerritories))
-p2
-
-
-# now lets look at raw numbers (rather than proportion of origin) in relation to warming
-
-p3 <- ggplot(data=heat, aes(x=Warming2013, y=Emig2015))
-p4 <- p3 + geom_point()
-p4
-
-p1 <- ggplot(data = heat, aes( x = heat$Warming2013, y = heat$Emig2015))
-p2 <- p1 + geom_point(aes(color = factor(heat$IslandTerritories))) + geom_smooth(mapping = aes( linetype = IslandTerritories))
 p2
 
 
@@ -205,13 +181,25 @@ contemigsmooth
 ##
 ##
 ##
-# And now, lets mace some fact panes separating these out
+# And now, lets mace some facet panes separating these out
+
+pointcore <- ggplot(data=heat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point()
+pointcont <- pointcore + facet_wrap (~heat$Continent)
+pointcont
+
+# now for smoothed images
 
 smoothcore <- ggplot(data=heat, aes(x=Warming2013, y=EmigrationRatio)) + geom_smooth()
 
-smoothcont <- smoothcore + facet_grid (. ~ heat$Continent)
+smoothcont <- smoothcore + facet_wrap (~ heat$Continent)
 smoothcont
 
 smoothcontislands <- smoothcore + facet_grid (heat$IslandTerritories ~ heat$Continent)
 smoothcontislands
+
+
+
+
+
+
 
