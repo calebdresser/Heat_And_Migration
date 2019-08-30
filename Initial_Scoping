@@ -74,37 +74,48 @@ ContinentalHeat <- heat [ which (heat$IslandTerritories == "Continental"),]
 ##
 # Now lets make scatterplots of heat vs emigration ratio by subset groups
 
-africaemig <- ggplot(AfricaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Africa")
+africaemig <- ggplot(AfricaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Africa") + geom_text(aes(label=AfricaHeat$PoliticalUnit))
 africaemig
 
-asiaemig <- ggplot(AsiaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Asia")
+asiaemig <- ggplot(AsiaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Asia") + geom_text(aes(label=AsiaHeat$PoliticalUnit))
 asiaemig
 
-caribemig <- ggplot(CaribbeanHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Caribbean")
+caribemig <- ggplot(CaribbeanHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Caribbean") + geom_text(aes(label=CaribbeanHeat$PoliticalUnit))
 caribemig
 
-CAemig <- ggplot(CAheat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Central America")
+CAemig <- ggplot(CAheat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Central America") + geom_text(aes(label=CAheat$PoliticalUnit))
 CAemig
 
-eurobemig <- ggplot(EuropeHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Europe")
+eurobemig <- ggplot(EuropeHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Europe") + geom_text(aes(label=EuropeHeat$PoliticalUnit))
 eurobemig
 
-MEemig <- ggplot(MEheat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Middle East")
+MEemig <- ggplot(MEheat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Middle East") + geom_text(aes(label=MEheat$PoliticalUnit))
 MEemig
 
-NAemig <- ggplot(NorthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("North America")
+NAemig <- ggplot(NorthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("North America") + geom_text(aes(label=NorthAmericaHeat$PoliticalUnit))
 NAemig
 
-oceanemig <- ggplot(OceaniaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Oceania")
+oceanemig <- ggplot(OceaniaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Oceania") + geom_text(aes(label=OceaniaHeat$PoliticalUnit))
 oceanemig
 
-SAemig <- ggplot(SouthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("South America")
+SAemig <- ggplot(SouthAmericaHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("South America") + geom_text(aes(label=SouthAmericaHeat$PoliticalUnit)) 
 SAemig
 
-islandemig <- ggplot(IslandsHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Islands")
+islandemig <- ggplot(IslandsHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Islands") + geom_text(aes(label=IslandsHeat$PoliticalUnit))
 islandemig
 
-contemig <- ggplot(ContinentalHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + ggtitle("Continental")
+contemig <- ggplot(ContinentalHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Continental") + geom_text(aes(label=ContinentalHeat$PoliticalUnit))
 contemig
 
 ##
