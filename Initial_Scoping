@@ -209,8 +209,21 @@ smoothcontislands <- smoothcore + facet_grid (heat$IslandTerritories ~ heat$Cont
 smoothcontislands
 
 
+##
+##
+##
+# Now some subsets
 
+# Continental Africa
 
+ContAfHeat <- AfricaHeat [ which (AfricaHeat$IslandTerritories == "Continental"),]
+ContAfHeat
 
+contafricaemig <- ggplot(ContAfHeat, aes(x=Warming2013, y=EmigrationRatio)) + geom_point() + 
+ggtitle("Continental Africa") + geom_text(aes(label=ContAfHeat$PoliticalUnit))
+contafricaemig
 
+contafricasmooth <- ggplot(ContAfHeat, aes (x=Warming2013, y=EmigrationRatio)) +
+geom_smooth() + ggtitle("Continental Africa") + 
+contafricasmooth
 
