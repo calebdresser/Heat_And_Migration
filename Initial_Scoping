@@ -269,10 +269,15 @@ TropicHeat
 SubtropicHeat
 TemperateHeat
 
+# Create some subsets by Hadley cell zone
 
-Hadley1
-Hadley2
-Hadley3
+Hadley1 <- heat [ which (heat$CapAbsLat <= "29"),]
+
+Split <- heat [ which (heat$CapAbsLat >= "31"),] #####
+
+Hadley2 
+
+Hadley3 <- heat [ which (heat$CapAbsLat >= "60"),]#######
 
 
 
