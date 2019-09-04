@@ -227,3 +227,53 @@ contafricasmooth <- ggplot(ContAfHeat, aes (x=Warming2013, y=EmigrationRatio)) +
 geom_smooth() + ggtitle("Continental Africa") + 
 contafricasmooth
 
+
+##
+##
+##
+# Now I've got latitude data (latitude of capital city, 
+# rounded to neares degree), so we can look at whether
+# there is a different effect pattern at differnt latitudes
+
+# First, lets see how latitude relates to emigraiton ratio:
+
+latemig <- ggplot(data=heat, aes(x=CapAbsLat, y=EmigrationRatio)) + geom_point()
+latemig
+
+latemigsmooth <- ggplot(data=heat, aes(x=CapAbsLat, y=EmigrationRatio)) + geom_smooth() +
+geom_text(aes(label=heat$PoliticalUnit))
+latemigsmooth
+
+#Interesting... lets look at some subsets
+
+ContinentalHeat <- heat [ which (heat$IslandTerritories == "Continental"),]
+contlatemig <- ggplot(data=ContinentalHeat, aes(x=CapAbsLat, y=EmigrationRatio)) + geom_point()
+contlatemig
+
+IslandsHeat <- heat [ which (heat$IslandTerritories == "Island"),]
+isllatemig <- ggplot(data=IslandsHeat, aes(x=CapAbsLat, y=EmigrationRatio)) + geom_point() +
+geom_text(aes(label=IslandsHeat$PoliticalUnit))
+isllatemig
+
+
+
+##
+##
+# Ok, so not much differnce in ratios by latitude for continental territories,
+# but it seems like emigration ratios are higher on tropical islands that in
+# the arctic... lets see if the influence (or lack thereof) of warming varies by latitude
+
+#Create some subsets by latitude 
+
+TropicHeat
+SubtropicHeat
+TemperateHeat
+
+
+Hadley1
+Hadley2
+Hadley3
+
+
+
+
