@@ -271,13 +271,44 @@ TemperateHeat
 
 # Create some subsets by Hadley cell zone
 
-Hadley1 <- heat [ which (heat$CapAbsLat <= "29"),]
+Hadley1 <- subset (data=heat, CapAbsLat < 30)
+Hadley1
 
-Split <- heat [ which (heat$CapAbsLat >= "31"),] #####
-
+Hadley2 <- subset( heat, (CapAbsLat >= 30) & (CapAbsLat <60))
 Hadley2 
 
-Hadley3 <- heat [ which (heat$CapAbsLat >= "60"),]#######
+Hadley3 <- subset (heat, CapAbsLat >= 60)
+Hadley3
+
+
+# Lets scatter warming vs emigration ratio in these subsets
+
+Had1 <- ggplot(Hadley1, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_point() + geom_text(aes(label=Hadley1$PoliticalUnit))
+Had1 
+
+Had2 <- ggplot(Hadley2, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_point() + geom_text(aes(label=Hadley2$PoliticalUnit))
+Had2 
+
+Had3 <- ggplot(Hadley3, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_point() + geom_text(aes(label=Hadley3$PoliticalUnit))
+Had3 
+
+#
+
+Hadley1NOME <- subset (Hadley1, Hadley1$Continent != "MiddleEast")
+Hadley1NOME
+
+Had1NOMEpt <- ggplot(Hadley1NOME, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_point()
+Had1NOMEpt
+
+Had1NOME <- ggplot(Hadley1NOME, aes(x=Warming2013, y=EmigrationRatio)) + 
+geom_point() + geom_text(aes(label=Hadley1NOME$PoliticalUnit))
+Had1NOME
+
+
 
 
 
