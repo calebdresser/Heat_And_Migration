@@ -52,6 +52,9 @@ AfricaHeat <- heat [ which (heat$Continent == "Africa"),]
 AsiaHeat <- heat [ which (heat$Continent == "Asia"),]
 
 CaribbeanHeat <- heat [ which (heat$Continent == "Caribbean"),]
+CaribNoMont <- filter (CaribbeanHeat , CaribbeanHeat$PoliticalUnit != "Montserrat")
+
+
 
 CAheat <- heat [ which (heat$Continent == "CentralAmerica"),]
 
@@ -68,6 +71,9 @@ SouthAmericaHeat <- heat [ which (heat$Continent == "SouthAmerica"),]
 IslandsHeat <- heat [ which (heat$IslandTerritories == "Island"),]
 
 ContinentalHeat <- heat [ which (heat$IslandTerritories == "Continental"),]
+
+
+
 
 ##
 ##
@@ -307,6 +313,18 @@ Had1NOMEpt
 Had1NOME <- ggplot(Hadley1NOME, aes(x=Warming2013, y=EmigrationRatio)) + 
 geom_point() + geom_text(aes(label=Hadley1NOME$PoliticalUnit))
 Had1NOME
+
+
+##
+##
+##
+# FUN WITH FRIENDS
+
+# Bin the dataset into 10 degree sets
+
+
+
+# Create facet plots by bin
 
 
 
