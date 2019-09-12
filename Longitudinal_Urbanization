@@ -32,6 +32,19 @@ ggtitle("% Change in Urbanization vs Annual Temperature Anomaly") +facet_wrap(~C
 scat
 
 
+#plot net immigration as a function of temp anomaly
+
+scat1 <- ggplot(data=set, aes(x=Year, y=NetEmigration))+geom_point()+
+ggtitle("Net Immigration vs Time (+ values = gaining population") +facet_wrap(~Country, scales = "free")
+scat1
+
+#plot net immigration as a function of temp anomaly
+
+scat <- ggplot(data=set, aes(x=AnnualAnomaly, y=NetEmigration))+geom_point()+
+ggtitle("Net Immigration vs Annual Temperature Anomaly") +facet_wrap(~Country, scales = "free")
+scat
+
+
 # Now lets look at the whole set together
 
 temptrend <- ggplot(data=set, aes(x=Year, y=AnnualAnomaly)) + geom_point() +
