@@ -1,28 +1,60 @@
+# load the data
 library(tidyverse)
 set <- read_csv (file = file.choose())
 head (set)
 
+
 # plot temperature anomalies over time
 
-temptrend <- ggplot(data=set, aes(x=Year, y=MonthlyAnomaly)) + geom_point() +
-ggtitle ("Monthly Temperature Anomaly in Niger, 1982-2012")
+temptrend <- ggplot(data=set, aes(x=Year, y=AnnualAnomaly)) + geom_point() +
+ggtitle ("Annual Temperature Anomaly (C)") + facet_wrap(~Country)
 temptrend
 
-temptrend2 <- ggplot(data=set, aes(x=Year, y=MonthlyAnomaly)) + geom_smooth()  +
-ggtitle ("Monthly Temperature Anomaly in Niger, 1982-2012")
-temptrend2
 
 # plot total urbanization over time
 
-urbtrend <- ggplot(data=set, aes(x=Year, y=UrbanizationPercent)) + geom_point()
+urbtrend <- ggplot(data=set, aes(x=Year, y=Urbanization)) + geom_point() +
+ggtitle ("Urbanization Percentage (Absolute)") + facet_wrap(~Country)
 urbtrend
+
 
 # plot change in urbanizaiton over time
 
-deltaurbtrend <- ggplot(data=set, aes(x=Year, y=DeltaUbanizationPercent)) + geom_point()
-deltaurbtrend
+urbtrend2 <- ggplot(data=set, aes(x=Year, y=AnnualUrbPercent)) + geom_point() +
+ggtitle ("Proportional Change in Urbanization Rate(% over past year)") + facet_wrap(~Country)
+urbtrend2
 
-# plot change in urbanization rate against temperature anomaly
 
-plot <- ggplot(data=set, aes (x=MonthlyAnomaly, y=DeltaUbanizationPercent))+geom_point()
-plot
+#plot proportional urbanizaiton change as a function of temp anomaly
+
+scat <- ggplot(data=set, aes(x=AnnualAnomaly, y=AnnualUrbPercent))+geom_point()+
+ggtitle("% Change in Urbanization vs Annual Temperature Anomaly") +facet_wrap(~Country, scales = "free")
+scat
+
+
+# Now lets look at the whole set together
+
+temptrend <- ggplot(data=set, aes(x=Year, y=AnnualAnomaly)) + geom_point() +
+ggtitle ("Annual Temperature Anomaly (C)")
+temptrend
+
+urbtrend <- ggplot(data=set, aes(x=Year, y=Urbanization)) + geom_point() +
+ggtitle ("Urbanization Percentage (Absolute)")
+urbtrend
+
+urbtrend2 <- ggplot(data=set, aes(x=Year, y=AnnualUrbPercent)) + geom_point() +
+ggtitle ("Proportional Change in Urbanization Rate(% over past year)")
+urbtrend2
+
+scat <- ggplot(data=set, aes(x=AnnualAnomaly, y=AnnualUrbPercent))+geom_point()+
+ggtitle("% Change in Urbanization vs Annual Temperature Anomaly")
+scat
+
+# lets look just at the 1990s on
+set2 <- set[which(set$Year > 1989),]
+
+scat2 <- ggplot(data=set2, aes(x=AnnualAnomaly, y=AnnualUrbPercent))+geom_point()+
+ggtitle("% Change in Urbanization vs Annual Temperature Anomaly") +facet_wrap(~Country)
+scat2
+
+
