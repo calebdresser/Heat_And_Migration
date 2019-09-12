@@ -1,0 +1,28 @@
+library(tidyverse)
+set <- read_csv (file = file.choose())
+head (set)
+
+# plot temperature anomalies over time
+
+temptrend <- ggplot(data=set, aes(x=Year, y=MonthlyAnomaly)) + geom_point() +
+ggtitle ("Monthly Temperature Anomaly in Niger, 1982-2012")
+temptrend
+
+temptrend2 <- ggplot(data=set, aes(x=Year, y=MonthlyAnomaly)) + geom_smooth()  +
+ggtitle ("Monthly Temperature Anomaly in Niger, 1982-2012")
+temptrend2
+
+# plot total urbanization over time
+
+urbtrend <- ggplot(data=set, aes(x=Year, y=UrbanizationPercent)) + geom_point()
+urbtrend
+
+# plot change in urbanizaiton over time
+
+deltaurbtrend <- ggplot(data=set, aes(x=Year, y=DeltaUbanizationPercent)) + geom_point()
+deltaurbtrend
+
+# plot change in urbanization rate against temperature anomaly
+
+plot <- ggplot(data=set, aes (x=MonthlyAnomaly, y=DeltaUbanizationPercent))+geom_point()
+plot
